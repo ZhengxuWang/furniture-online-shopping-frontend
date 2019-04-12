@@ -1,0 +1,92 @@
+<mat-card>
+  <mat-card-title>Filter Products</mat-card-title>
+  <form (ngSubmit)="onFilterSubmit(filterProductColorForm.value)" fxLayout="column" #filterProductColorForm="ngForm">
+    <input type="text" class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a product by name">
+    <label>Color</label>
+    <div class="check">
+      <input type="radio" name="color" value="White" [(ngModel)] = "color">
+      <span class="wh"><mat-icon>lens</mat-icon></span>
+      <input type="radio" name="color" value="Grey" [(ngModel)] = "color">
+      <span class="gr"><mat-icon>lens</mat-icon></span>
+      <input type="radio" name="color" value="Black" [(ngModel)] = "color">
+      <span class="bla"><mat-icon>lens</mat-icon></span>
+      <input type="radio" name="color" value="Blue" [(ngModel)] = "color">
+      <span class="blu"><mat-icon>lens</mat-icon></span>
+      <input type="radio" name="color" value="Red" [(ngModel)] = "color">
+      <span class="r"><mat-icon>lens</mat-icon></span>
+      <input type="radio" name="color" value="Yellow" [(ngModel)] = "color">
+      <span class="y"><mat-icon>lens</mat-icon></span>
+      <input type="radio" name="color" value="Orange" [(ngModel)] = "color">
+      <span class="o"><mat-icon>lens</mat-icon></span>
+      <input type="radio" name="color" value="Brown" [(ngModel)] = "color">
+      <span class="br"><mat-icon>lens</mat-icon></span>
+      <button type="submit" mat-raised-button color="primary">Filter By Color</button>
+    </div>
+  </form>
+  <form (ngSubmit)="onFilterCategorySubmit(filterProductCategoryForm.value)" fxLayout="column" #filterProductCategoryForm="ngForm">
+    <mat-form-field>
+      <mat-placeholder>Category</mat-placeholder>
+      <select matNativeControl name="category" [(ngModel)] = "category">
+        <option value="Chairs">Chairs</option>
+        <option value="Beds">Beds</option>
+        <option value="Accessories">Accessories</option>
+        <option value="Furniture">Furniture</option>
+        <option value="HomeDeco">HomeDeco</option>
+        <option value="Dressings">Dressings</option>
+        <option value="Tables">Tables</option>
+      </select>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Filter By category</button>
+  </form>
+
+  <form (ngSubmit)="onFilterStockSubmit(filterByStockForm.value)" fxLayout="row" #filterByStockForm="ngForm">
+    <div class="check">
+      <input type="checkbox" name="stock" value="stock" [(ngModel)] = "stock">
+      <span class="bla">In Stock</span>
+      <button type="submit" mat-raised-button color="primary">Filter In Stock</button>
+    </div>
+  </form>
+
+  <form (ngSubmit)="onStockSubmit(checkinstock.value)" fxLayout="row" #checkinstock="ngForm">
+  <button type="submit" mat-raised-button color="primary">Check available in Stock</button>
+  </form>
+
+  <p fxLayout="row" fxLayoutAlign="start center">
+    <mat-form-field>
+      <input matInput type="number" placeholder="min" [(ngModel)]="min">
+    </mat-form-field>
+    <span><mat-icon>remove</mat-icon></span>
+    <mat-form-field>
+      <input matInput type="number" placeholder="max" [(ngModel)]="max">
+    </mat-form-field>
+  </p>
+  <button mat-button color="primary" (click)="clearFilters()">CLEAR FILTERS</button>
+</mat-card>
+
+
+
+
+<section class="products-list-section">
+  <div class="products-list-container">
+    <a *ngFor="let product of products | productsPipe : min : max |filter: searchText" >
+      <mat-card class="products-list-item" >
+        <mat-card-header>
+          <div mat-card-avatar></div>
+          <mat-card-title>{{product.name}}</mat-card-title>
+          <mat-card-subtitle>brand:<b>{{product.brand}}</b>,price:<b>{{product.price}}</b>,stock:<b>{{product.stock}}</b></mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{product.image}}">
+        <mat-card-content>
+          <p>
+            {{product.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" [routerLink]="['/products/product-detail', product.id]">See Detail</button>
+        </mat-card-actions>
+      </mat-card>
+    </a>
+  </div>
+</section>
+
+

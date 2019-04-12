@@ -1,0 +1,31 @@
+<main class="container">
+  <h2>Past Orders</h2>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let order of orders$ | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{order.purchase_date}}
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ul>
+        <li *ngFor="let item of order.purchases">
+          {{item.product.name}} * {{item.qty}} - {{item.qty * item.product.price | currency}}
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="col col-sm-6">
+    <div class="card mb-3">
+      <div class="card-header">
+        Order Chart
+      </div>
+      <div class="card-body">
+        <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</main>
+

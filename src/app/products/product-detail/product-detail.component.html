@@ -1,0 +1,106 @@
+<div class="container-fluid" *ngIf="product">
+  <div class="row product-detail-container">
+    <div class="col-sm-9">
+      <div class="product-detail-title">
+        <h1>{{product.name}}</h1>
+      </div>
+      <div class="product-detail-image-container text-center">
+        <img src="{{product.image}}" class="product-detail-image">
+      </div>
+    </div>
+    <div class="col-sm-3 product-detail-info-container">
+      <div class="product-detail-info-price">
+        <mat-icon>money</mat-icon>   {{product.price | currency}}
+      </div>
+      <div class="product-detail-info-brand">
+        <mat-icon>card_travel</mat-icon> By: {{product.brand}}
+      </div>
+      <div class="product-detail-info-stock">
+        <mat-icon>store</mat-icon>    Stock: {{product.stock}}
+      </div>
+      <div class="product-detail-info-category">
+        <mat-icon>grade</mat-icon>Category: {{product.category.type}}
+      </div>
+      <div class="product-detail-info-colors">
+        <span>Color:</span>
+        <span *ngFor="let color of product.colors">
+          <span *ngIf="color.type === 'White'" class="wh"><mat-icon>lens</mat-icon></span>
+          <span *ngIf="color.type === 'Grey'" class="gr"><mat-icon>lens</mat-icon></span>
+          <span *ngIf="color.type === 'Black'" class="bla"><mat-icon>lens</mat-icon></span>
+          <span *ngIf="color.type === 'Blue'" class="blu"><mat-icon>lens</mat-icon></span>
+          <span *ngIf="color.type === 'Red'" class="r"><mat-icon>lens</mat-icon></span>
+          <span *ngIf="color.type === 'Yellow'" class="y"><mat-icon>lens</mat-icon></span>
+          <span *ngIf="color.type === 'Orange'" class="o"><mat-icon>lens</mat-icon></span>
+          <span *ngIf="color.type === 'Brown'" class="br"><mat-icon>lens</mat-icon></span>
+        </span>
+      </div>
+      <hr>
+      <div>
+        Star Ratings: <bar-rating [rate]="product.star" [max]="5" [readOnly] = true></bar-rating><b class="star">{{product.star | number : '1.2-2'}}</b> Scores
+      </div>
+      <div class="product-detail-info-description">
+        <h4>description:</h4>
+        <p>{{product.description}}</p>
+      </div>
+      <div class="product-detail-info-cart-button-container">
+        <span *ngIf="(authService.userSubject | async); else login">
+          <button mat-raised-button color="primary" class="btn-block" (click)="addToCart()">ADD TO CART</button>
+        </span>
+        <ng-template #login>
+          <button mat-raised-button color="accent" class="btn-block" routerLink="/users/login">Login</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-warning" role="alert" *ngFor="let comment of product.comments">
+    <div>User: </div>
+    <b>Star Ratings:</b><bar-rating [rate]="comment.star" [max]="5" [readOnly] = true></bar-rating>
+    <hr>
+    <p>{{comment.comment}}</p>
+  </div>
+  <div>
+    <span *ngIf="(authService.userSubject | async); else logins">
+          <form (ngSubmit)="onSubmit(commentForm.value)" fxLayout="column" #commentForm="ngForm">
+              <mat-form-field>
+                <bar-rating [(rate)]="cssRate" [max]="5" ngModel matInput name="rating"></bar-rating>
+                <mat-placeholder>Write your comment</mat-placeholder>
+                <input type="text" matInput id="comment" name="comment" ngModel>
+              </mat-form-field>
+              <div>
+                <button type="submit" mat-raised-button color="primary">Submit your comment</button>
+              </div>
+          </form>
+    </span>
+    <ng-template #logins>
+      <button mat-raised-button color="accent" class="btn-block" routerLink="/users/login">LOGIN to Comment</button>
+    </ng-template>
+  </div>
+</div>
+
+<h3>Sponsored products related to this item</h3>
+<hr>
+<section class="products-list-section">
+  <div class="products-list-container">
+    <a *ngFor="let prod of sameCategories" >
+      <mat-card class="products-list-item" >
+        <mat-card-header>
+          <div mat-card-avatar></div>
+          <mat-card-title>{{prod.name}}</mat-card-title>
+          <mat-card-subtitle>This product used to be {{prod.price}},now on sale(${{prod.discount * prod.price}})</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{prod.image}}" class="images">
+        <mat-card-content>
+          <p>
+            {{prod.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" [routerLink]="['/products/product-detail', prod.id]">See Detail</button>
+        </mat-card-actions>
+      </mat-card>
+    </a>
+  </div>
+</section>
+
+

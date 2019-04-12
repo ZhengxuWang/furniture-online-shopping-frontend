@@ -1,0 +1,42 @@
+<main class="container">
+  <mat-card fxFlex.gt-sm="60%" fxFlexOffset.gt-sm="20%">
+    <mat-card-title>User Detail</mat-card-title>
+    <form (ngSubmit)="onSubmit(userDetailForm.value)" fxLayout="column" #userDetailForm="ngForm">
+      <mat-form-field>
+        <mat-placeholder>Name</mat-placeholder>
+        <input type="text" matInput name="name" [(ngModel)]="userDetail.name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Email</mat-placeholder>
+        <input type="email" matInput name="email" [(ngModel)]="userDetail.email">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Phone</mat-placeholder>
+        <input type="tel" matInput name="phone" [(ngModel)]="userDetail.phone">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Address 1</mat-placeholder>
+        <input type="text" matInput name="address1" [(ngModel)]="userDetail.address1">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Address 2</mat-placeholder>
+        <input type="text" matInput name="address2" [(ngModel)]="userDetail.address2">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>City</mat-placeholder>
+        <input type="text" matInput name="city" [(ngModel)]="userDetail.city">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>State</mat-placeholder>
+        <input type="text" matInput name="state" [(ngModel)]="userDetail.state">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Zip</mat-placeholder>
+        <input type="text" matInput name="zip" [(ngModel)]="userDetail.zip">
+      </mat-form-field>
+      <div>
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+      </div>
+    </form>
+  </mat-card>
+</main>

@@ -1,0 +1,103 @@
+<div *ngIf="!(productSubject | async)">
+  <mat-card fxFlex.gt-sm="60%" fxFlexOffset.gt-sm="20%">
+    <mat-card-title>Search Product</mat-card-title>
+    <form (ngSubmit)="onsearchSubmit(searchForm.value)" fxLayout="column" #searchForm="ngForm">
+      <mat-form-field>
+        <mat-placeholder>please input product ID</mat-placeholder>
+        <input type="text" matInput id="id" name="id" ngModel #name="ngModel">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>please input product name</mat-placeholder>
+        <input type="text" matInput id="name" name="name" ngModel #name="ngModel" >
+      </mat-form-field>
+      <div>
+        <button type="submit" mat-raised-button color="primary">Search Product</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
+
+<hr>
+
+<div *ngIf="!(productSubject | async)">
+  <mat-card fxFlex.gt-sm="60%" fxFlexOffset.gt-sm="20%">
+    <mat-card-title>Add New Product</mat-card-title>
+    <button type="submit" mat-raised-button color="primary" routerLink="/manageproduct/addproduct">Add Product</button>
+  </mat-card>
+</div>
+
+
+<div *ngIf="(productSubject | async)">
+  <mat-card fxFlex.gt-sm="60%" fxFlexOffset.gt-sm="20%">
+    <mat-card-title>Edit Product</mat-card-title>
+    <form (ngSubmit)="onEditSubmit(editProductForm.value)" fxLayout="column" #editProductForm="ngForm">
+
+      <mat-form-field>
+      <input matInput placeholder="Product_id (disabled)" disabled value="{{product.id}}">
+    </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Name</mat-placeholder>
+        <input type="text" matInput name="name" [(ngModel)]="product.name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Category</mat-placeholder>
+        <select matNativeControl name="category" [(ngModel)]="product.category.type">
+          <option value="Chairs">Chairs</option>
+          <option value="Beds">Beds</option>
+          <option value="Accessories">Accessories</option>
+          <option value="Furniture">Furniture</option>
+          <option value="HomeDeco">HomeDeco</option>
+          <option value="Dressings">Dressings</option>
+          <option value="Tables">Tables</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Brand</mat-placeholder>
+        <input type="text" matInput name="brand" [(ngModel)]="product.brand">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Price</mat-placeholder>
+        <input type="number" matInput name="price" [(ngModel)]="product.price">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-placeholder>Stock</mat-placeholder>
+        <input type="number" matInput name="stock" [(ngModel)]="product.stock">
+      </mat-form-field>
+      <label>Discount</label>
+      <mat-slider name="discount" min="0" max="1" step="0.1" thumbLabel tickInterval="0.1" [(ngModel)]="product.discount"></mat-slider>
+      <mat-form-field>
+        <mat-placeholder>Description</mat-placeholder>
+        <input type="text" matInput name="description" [(ngModel)]="product.description">
+      </mat-form-field>
+      <label>Color</label>
+      <div id="check">
+        <input type="checkbox" name="White" [(ngModel)]="colors.White">
+        <span class="wh"><mat-icon>lens</mat-icon></span>
+        <input type="checkbox" name="Grey" [(ngModel)]="colors.Grey">
+        <span class="gr"><mat-icon>lens</mat-icon></span>
+        <input type="checkbox" name="Black" [(ngModel)]="colors.Black">
+        <span class="bla"><mat-icon>lens</mat-icon></span>
+        <input type="checkbox" name="Blue" [(ngModel)]="colors.Blue">
+        <span class="blu"><mat-icon>lens</mat-icon></span>
+        <input type="checkbox" name="Red" [(ngModel)]="colors.Red">
+        <span class="r"><mat-icon>lens</mat-icon></span>
+        <input type="checkbox" name="Yellow" [(ngModel)]="colors.Yellow">
+        <span class="y"><mat-icon>lens</mat-icon></span>
+        <input type="checkbox" name="Orange" [(ngModel)]="colors.Orange">
+        <span class="o"><mat-icon>lens</mat-icon></span>
+        <input type="checkbox" name="Brown" [(ngModel)]="colors.Brown">
+        <span class="br"><mat-icon>lens</mat-icon></span>
+      </div>
+      <mat-form-field>
+        <mat-placeholder>Image</mat-placeholder>
+        <input type="text" matInput name="image" [(ngModel)]="product.image">
+      </mat-form-field>
+      <div>
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
+
+
+

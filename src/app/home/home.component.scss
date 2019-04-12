@@ -1,0 +1,89 @@
+p {
+  font-family: Lato;
+}
+h3{
+  color: rgb(191,167,122);
+}
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+}
+hr{
+  height: 3px;
+  color: red;
+  background-color: red;
+  border: none;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+[appSliderItem] {
+  flex-shrink: 0;
+}
+
+.chair-header-image {
+  background-image: url('https://secure.img1-fg.wfcdn.com/im/65831113/resize-h800-w800%5Ecompr-r85/5577/55775924/Bouck+Wingback+Chair.jpg');
+  background-size: cover;
+}
+
+.bed-header-image {
+  background-image: url('http://cdn.shopify.com/s/files/1/2660/5202/products/hjnlgkoig1gnbl964gc9_3aabdd01-9faa-48f5-a3d4-b339799370bc_800x.jpg?v=1536593845');
+  background-size: cover;
+}
+
+
+.accessory-header-image {
+  background-image: url('https://o.aolcdn.com/images/dims?resize=620%2C500&crop=620%2C500&image_uri=https%3A%2F%2Fs.blogcdn.com%2Fslideshows%2Fimages%2Fslides%2F740%2F971%2F6%2FS7409716%2Fslug%2Fs%2Fd08e74e95b11d1f027d2a0832a93648f53bcc378-main-hero-image-1.jpg&client=amp-blogside-v2&signature=314dba899cf15f96c6502e8c50690aa7afe29a2a');
+  background-size: cover;
+}
+.furniture-header-image {
+  background-image: url('https://cb2.scene7.com/is/image/CB2/122918_cat_furniture_second?wid=1680&qlt=65');
+  background-size: cover;
+}
+.homedeco-header-image {
+  background-image: url('http://cdn.shopify.com/s/files/1/2679/4394/products/product-image-531981645_1200x1200.jpg?v=1517088129');
+  background-size: cover;
+}
+.dressing-header-image {
+  background-image: url('http://www.rosacuisine.com/wp-content/uploads/2018/03/ratio_16_9.jpg');
+  background-size: cover;
+}
+.table-header-image {
+  background-image: url('http://jjhwatkins.com/wp-content/uploads/2019/02/dining-table-and-chairs-designs-online-at-best-prices-with-regard-to-design-remodel-0.jpg');
+  background-size: cover;
+}
+.images{
+  width:390px;
+  height:390px;
+  background-size: cover;
+}
+.products-list-section {
+  flex: 0 1 70%;
+  //margin: 20px;
+
+  .products-list-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .products-list-item {
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
+b {
+  color: black;
+  font-size: 20px;
+}
+.sale {
+  color: red;
+}
+.stars {
+  color:red;
+}
+.time {
+  color: red;
+}

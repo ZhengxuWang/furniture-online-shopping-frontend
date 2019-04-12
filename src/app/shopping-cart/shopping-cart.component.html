@@ -1,0 +1,38 @@
+<main class="container">
+  <mat-card>
+    <mat-card-title>
+      <span>Shopping Cart</span>
+      <span class="example-fill-remaining-space"></span>
+      <button mat-raised-button color="accent" routerLink="/products">Contine Shopping</button>
+      <button mat-raised-button color="primary" (click)="checkout()">Checkout</button>
+    </mat-card-title>
+    <mat-list>
+      <mat-list-item *ngFor="let item of items$ | async">
+        <div fxLayout="row" class="cart-item-container">
+          <div>
+            <img [src]="item.product.image">
+          </div>
+          <div fxFlex="1 1 100%" fxLayout="column" fxLayoutAlign="center start" class="cart-item-info">
+            <span>{{item.product.brand}} - {{item.product.name}}</span>
+            <span>{{item.product.price | currency}}</span>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-select [(value)]="item.qty" (selectionChange)="setCart(item.qty, item.product)">
+                <mat-option *ngFor="let qty of qtyArray;" [value]="qty">{{qty}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="text-middle">
+            <span class="cart-item-price">{{item.product.price * item.qty | currency}}</span>
+          </div>
+          <div class="text-middle">
+            <a mat-icon-button color="primary" (click)="removeFromCart(item)">
+              <mat-icon class="mat-icon material-icons">remove_circle_outline</mat-icon>
+            </a>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</main>
